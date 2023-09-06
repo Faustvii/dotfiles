@@ -1,0 +1,17 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ["~", "~/.config"]
+
+- link:
+    ~/.config/discord/settings.json: .config/discord/settings.json
+    ~/.config/easyeffects/input/: .config/easyeffects/input/
+    ~/.config/easyeffects/output/: .config/easyeffects/output/
+    ~/.config/MangoHud/: .config/MangoHud/
+    ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
+    ~/.gitconfig:
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
