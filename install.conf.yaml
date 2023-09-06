@@ -1,7 +1,6 @@
 - defaults:
     link:
       create: true
-      relink: true
 
 - clean: ["~", "~/.config"]
 
@@ -12,6 +11,7 @@
     ~/.config/MangoHud/: .config/MangoHud/
     ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
     ~/.gitconfig:
+    ~/.zshrc:
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
