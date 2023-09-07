@@ -1,17 +1,35 @@
 - defaults:
-    link:
-      create: true
+      link:
+          create: true
 
 - clean: ["~", "~/.config"]
 
 - link:
-    ~/.config/discord/settings.json: .config/discord/settings.json
-    ~/.config/easyeffects/input/: .config/easyeffects/input/
-    ~/.config/easyeffects/output/: .config/easyeffects/output/
-    ~/.config/MangoHud/: .config/MangoHud/
-    ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
-    ~/.gitconfig:
-    ~/.zshrc:
+      ~/.config/discord/settings.json: .config/discord/settings.json
+      ~/.config/easyeffects/input/: .config/easyeffects/input/
+      ~/.config/easyeffects/output/: .config/easyeffects/output/
+      ~/.config/MangoHud/: .config/MangoHud/
+      ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
+      ~/.gitconfig:
+      ~/.zshrc:
+      ~/.p10k.zsh:
 
 - shell:
-    - [git submodule update --init --recursive, Installing submodules]
+      - [git submodule update --init --recursive, Installing submodules]
+      - description: Installing oh-my-zsh
+        command: |
+            if [ ! -d "$ZSH" ]; then
+                sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+            fi
+      - description: Installing /plugins/zsh-autosuggestions
+        command: |
+            ZSH_CUSTOM="$ZSH/custom"
+            if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+                git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+            fi
+      - description: Installing /plugins/zsh-syntax-highlighting
+        command: |
+            ZSH_CUSTOM="$ZSH/custom"
+            if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+                git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+            fi
