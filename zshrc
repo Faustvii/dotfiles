@@ -1,4 +1,3 @@
-export SSH_ASKPASS=ksshaskpass
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -40,6 +39,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # zstyle ':omz:update' frequency 13
 
 # ssh-agent plugin
+zstyle :omz:plugins:ssh-agent helper ksshaskpass
 zstyle :omz:plugins:ssh-agent quiet yes
 
 # Uncomment the following line if pasting URLs and other text is messed up.
