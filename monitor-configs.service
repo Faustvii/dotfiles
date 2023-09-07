@@ -1,0 +1,10 @@
+[Unit]
+Description=Monitor configs folder and push to Git
+After=network.target
+
+[Service]
+ExecStart=/home/faust/sync.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
