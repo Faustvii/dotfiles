@@ -21,7 +21,7 @@ push_changes() {
 
 # Main loop
 while true; do
-  # Monitor the folder for changes and push changes every 10 minutes
-  inotifywait -r --exclude '/\.git/' -e modify,create,delete,moved_to,moved_from --timeout "$PUSH_INTERVAL" "$CONFIG_DIR"
+  # push changes every 10 minutes
   push_changes
+  sleep "$PUSH_INTERVAL"
 done

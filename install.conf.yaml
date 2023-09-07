@@ -15,6 +15,10 @@
       ~/.p10k.zsh:
       ~/sync.sh:
       ~/.config/systemd/user/monitor-configs.service: monitor-configs.service
+      ~/.config/Code/User/:
+          create: true
+          glob: true
+          path: config/Code/User/*.json
 
 - shell:
       - [git submodule update --init --recursive, Installing submodules]
