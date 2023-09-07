@@ -8,7 +8,6 @@ PUSH_INTERVAL=600 # 10 minutes in seconds
 
 eval $(ssh-agent)
 ssh-add
-ssh-add -l
 
 # Function to push changes to the Git repo
 push_changes() {
