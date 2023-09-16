@@ -8,6 +8,7 @@
       ~/.config/discord/settings.json: .config/discord/settings.json
       ~/.config/easyeffects/input/: .config/easyeffects/input/
       ~/.config/easyeffects/output/: .config/easyeffects/output/
+      ~/.config/easyeffects/irs: .config/easyeffects/irs/
       ~/.config/MangoHud/: .config/MangoHud/
       ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
       ~/.gitconfig:
