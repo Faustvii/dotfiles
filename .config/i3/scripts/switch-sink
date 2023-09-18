@@ -1,0 +1,35 @@
+#!/bin/bash
+set -e
+
+default_sink=$(pactl info | grep "Default Sink:" | cut '-d ' -f3)
+sinks=$(pactl list short sinks | cut -f2)
+
+# for wrap-around
+sinks="$sinks
+$sinks"
+
+next_sink=$(echo "$sinks" | awk "/$default_sink/{getline x;print x;exit;}")
+
+function get_device_name() {
+    device_name=$(pactl list sinks | awk -v device="$next_sink" '
+    $1 == "Sink" {sink = $2}
+    $1 == "node.name" && $3 == "\"" device "\"" {found = 1}
+    found && $1 == "device.product.name" {
+        gsub(/"/, "", $0)
+        print substr($0, index($0, "=")+2)
+        exit
+    }
+')
+}
+
+function show_active_device() {
+    get_device_name
+    dunstify -t 1000 -r 46001 -u normal "$device_name"
+}
+
+pactl set-default-sink "$next_sink"
+pactl list short sink-inputs |
+    cut -f1 |
+    xargs -I{} pactl move-sink-input {} "$next_sink"
+
+show_active_device
