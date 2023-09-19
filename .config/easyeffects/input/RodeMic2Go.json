@@ -134,7 +134,7 @@
             "model-path": "",
             "output-gain": 0.0,
             "release": 20.0,
-            "vad-thres": 25.0,
+            "vad-thres": 15.0,
             "wet": 0.0
         },
         "speex#0": {
