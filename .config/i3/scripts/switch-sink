@@ -2,7 +2,7 @@
 set -e
 
 default_sink=$(pactl info | grep "Default Sink:" | cut '-d ' -f3)
-sinks=$(pactl list short sinks | cut -f2)
+sinks=$(pactl list short sinks | cut -f2 | grep -v 'easyeffects')
 
 # for wrap-around
 sinks="$sinks
