@@ -26,8 +26,8 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id numlockx on
 
 # configure multiple keyboard layouts and hotkey to switch Alt+Space
-#exec --no-startup-id setxkbmap -layout 'us,da' -option 'grp:alt_space'
-bindsym Mod1+space exec setxkbmap -layout 'us,da'
+exec --no-startup-id setxkbmap -layout 'us,dk' -option 'grp:alt_space_toggle'
+# bindsym Mod1+space exec setxkbmap -layout 'us,dk'
 
 # start a script to setup displays
 exec --no-startup-id ~/.screenlayout/monitor.sh
@@ -256,7 +256,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Mod1+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
