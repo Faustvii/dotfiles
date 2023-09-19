@@ -25,14 +25,11 @@ exec --no-startup-id dex --autostart --environment i3
 # num lock activated
 exec --no-startup-id numlockx on
 
-# configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
-#exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
-
-# start conky:
-#exec_always --no-startup-id conky
+# configure multiple keyboard layouts and hotkey to switch Alt+Space
+#exec --no-startup-id setxkbmap -layout 'us,da' -option 'grp:alt_space'
+bindsym Mod1+space exec setxkbmap -layout 'us,da'
 
 # start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
@@ -44,6 +41,7 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 
 # compositor
 exec --no-startup-id picom
+
 # Desktop notifications
 # dunst config used ~/.config/dunst/dunstrc
 exec --no-startup-id /usr/bin/dunst
