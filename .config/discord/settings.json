@@ -2,10 +2,10 @@
   "IS_MAXIMIZED": false,
   "IS_MINIMIZED": false,
   "WINDOW_BOUNDS": {
-    "x": 1920,
+    "x": 0,
     "y": 42,
-    "width": 3440,
-    "height": 1374
+    "width": 960,
+    "height": 1014
   },
   "SKIP_HOST_UPDATE": true,
   "OPEN_ON_STARTUP": true
