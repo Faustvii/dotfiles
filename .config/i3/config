@@ -1,3 +1,4 @@
+# shellcheck disable=all
 # set the mod key to the winkey:
 set $mod Mod4
 

@@ -294,7 +294,7 @@ checkAudio() {
 
 delayScreensaver() {
     # Reset inactivity time counter so screensaver is not started
-echo "delaying"
+
     case $screensaver in
     "xscreensaver")
         xscreensaver-command -deactivate >/dev/null
