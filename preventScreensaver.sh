@@ -262,12 +262,13 @@ checkAudio() {
     local found_application=""
     local found_corked=""
     local process_binary=""
-
+echo $application_name
     # Use pactl to list sink inputs and check for both conditions
     while read -r line; do
         if [[ "$line" =~ ^"Sink Input #" ]]; then
             found_application=""
             found_corked=""
+            process_binary=""
         elif [[ "$line" =~ ^"Corked: no" ]]; then
             found_corked="yes"
         elif [[ "$line" =~ ^"application.name = " ]]; then
@@ -283,7 +284,8 @@ checkAudio() {
             fi
         elif [[ "$line" =~ ^"application.process.binary = " ]]; then
             process_binary=$(echo "${line#*= }" | tr -d '"')
-            if [[ $found_application = "chromium" && $process_binary != $found_application ]]; then
+            # chromium application name might show up from stuff like Discord and other electron apps
+            if [[ $found_application = "chromium" && "$process_binary" != "$found_application" ]]; then
                 echo "$process_binary - $found_application"
                 return 1
             fi
@@ -362,7 +364,6 @@ init_app_short_flags() {
     done
 }
 
-# this is hardcoded for retro-compatibilty
 declare -A app_short_flags=(
 
 )
@@ -430,18 +431,8 @@ while [ -n "$1" ]; do
     # Arguments must always be passed in tuples
     shift 2
 done
-# Convert delay to seconds. We substract 10 for assurance.
+
 echo "Start prevent screensaver mainloop"
-
-while true; do
-    for app in "${browsers[@]}"; do
-        if checkAudio "$app"; then
-            echo "$app"
-        fi
-    done
-
-    sleep 1
-done
 
 while true; do
     if [ -f "$inhibitfile" ]; then
