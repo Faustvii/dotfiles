@@ -261,6 +261,7 @@ checkAudio() {
     local application_name="$1"
     local found_application=""
     local found_corked=""
+    local process_binary=""
 
     # Use pactl to list sink inputs and check for both conditions
     while read -r line; do
@@ -280,10 +281,16 @@ checkAudio() {
             else
                 found_application=""
             fi
+        elif [[ "$line" =~ ^"application.process.binary = " ]]; then
+            process_binary=$(echo "${line#*= }" | tr -d '"')
+            if [[ $found_application = "chromium" && $process_binary != $found_application ]]; then
+                echo "$process_binary - $found_application"
+                return 1
+            fi
         fi
 
         # Check if both conditions are met for this sink input
-        if [ "$found_application" = "$application_name" ] && [ "$found_corked" = "yes" ]; then
+        if [ "$found_application" = "$application_name" ] && [ "$found_corked" = "yes" ] && [ -n "$process_binary" ]; then
             return 0
         fi
     done < <(pactl list sink-inputs)
