@@ -34,6 +34,7 @@ firefox_flash_detection=1
 chromium_flash_detection=1
 #chrome_app_name="Netflix"
 webkit_flash_detection=1
+flash_detection=1
 html5_detection=1
 steam_detection=0
 minitube_detection=0
@@ -44,6 +45,17 @@ delay_seconds=60
 # You can find the value for this with `xprop WM_NAME`
 # (click on the window once the mouse is a crosshair)
 window_name=""
+
+declare -A checked_apps=(
+    [mpv]=0
+    [mplayer]=0
+    [plexmediaplayer]=0
+    [plex]=1
+    [vlc]=0
+    [totem]=0
+    [steam]=0
+    [minitube]=0
+)
 
 # realdisp
 realdisp=$(echo "$DISPLAY" | cut -d. -f1)
@@ -190,65 +202,58 @@ isAppRunningParam() {
     # Get title of window
     local win_title="$1"
 
-    case "$win_title" in
-    *[Cc]hromium*)
-        [ "$chromium_flash_detection" = 1 ] && [ $(pgrep -fc "chromium --type=ppapi") -ge 1 ] && return 0
-        [ "$html5_detection" = 1 ] && [ $(pgrep -c chromium) -ge 1 ] && checkAudio "chromium" && return 0
+    for app in "${!checked_apps[@]}"; do
+        grep -iq "$app" <<<"$win_title" &&
+            [ "${checked_apps[$app]}" = 1 ] &&
+            [ $(pgrep -ic "$app") -ge 1 ] &&
+            checkAudio "$app" &&
+            return 0
+    done
+
+    [ "$html5_detection" = 1 ] && for app in chromium chrome firefox brave opera epiphany; do
+        grep -iq "$app" <<<"$win_title" &&
+            [ $(pgrep -ic "$app") -ge 1 ] &&
+            checkAudio "$app" &&
+            return 0
+    done
+
+    # case "$win_title" in
+    # *[Cc]hromium*)
+    #     [ "$chromium_flash_detection" = 1 ] && [ $(pgrep -fc "chromium --type=ppapi") -ge 1 ] && return 0
+    #     [ "$html5_detection" = 1 ] && [ $(pgrep -c chromium) -ge 1 ] && checkAudio "chromium" && return 0
+    #     ;;
+    # *[Cc]hrome*)
+    #     [ "$chromium_flash_detection" = 1 ] && [ $(pgrep -fc "chrome --type=ppapi") -ge 1 ] && return 0
+    #     [ "$html5_detection" = 1 ] && [ $(pgrep -c chrome) -ge 1 ] && checkAudio "chrom" && return 0
+    #     ;;
+    # *[Ff]irefox*)
+    #     [ "$html5_detection" = 1 ] && [ $(pgrep -fc firefox) -ge 1 ] && checkAudio "firefox" && return 0
+    #     ;;
+    # *[Ll]ibre[wW]olf*)
+    #     [ "$html5_detection" = 1 ] && [ $(pgrep -fc librewolf) -ge 1 ] && checkAudio "librewolf" && return 0
+    #     ;;
+    [ "$flash_detection" = 1 ] && case "$win_title" in
+    *chromium*)
+        [ $(pgrep -ifc "chromium --type=ppapi") -ge 1 ] && return 0
         ;;
-    *[Cc]hrome*)
-        [ "$chromium_flash_detection" = 1 ] && [ $(pgrep -fc "chrome --type=ppapi") -ge 1 ] && return 0
-        [ "$html5_detection" = 1 ] && [ $(pgrep -c chrome) -ge 1 ] && checkAudio "chrom" && return 0
+    *chrome*)
+        [ $(pgrep -ifc "chrome --type=ppapi") -ge 1 ] && return 0
         ;;
-    *[Ff]irefox*)
-        [ "$html5_detection" = 1 ] && [ $(pgrep -fc firefox) -ge 1 ] && checkAudio "firefox" && return 0
+    *brave*)
+        [ $(pgrep -ifc "brave --type=ppapi") -ge 1 ] && return 0
         ;;
-    *[Ll]ibre[wW]olf*)
-        [ "$html5_detection" = 1 ] && [ $(pgrep -fc librewolf) -ge 1 ] && checkAudio "librewolf" && return 0
+    *unknown* | *plugin-container*) # firefox
+        [ $(pgrep -ic plugin-container) -ge 1 ] && return 0
         ;;
-    *[Bb]rave*)
-        [ "$chromium_flash_detection" = 1 ] && [ $(pgrep -fc "brave --type=ppapi") -ge 1 ] && return 0
-        [ "$html5_detection" = 1 ] && [ $(pgrep -c brave) -ge 1 ] && checkAudio "brave" && return 0
-        ;;
-    *opera*)
-        [ "$html5_detection" = 1 ] && [ $(pgrep -c opera) -ge 1 ] && checkAudio "opera" && return 0
-        ;;
-    *epiphany*)
-        [ "$html5_detection" = 1 ] && [ $(pgrep -c epiphany) -ge 1 ] && checkAudio "epiphany" && return 0
-        ;;
-    *unknown* | *plugin-container*)
-        [ "$firefox_flash_detection" = 1 ] && [ $(pgrep -c plugin-container) -ge 1 ] && return 0
-        ;;
-    *WebKitPluginProcess*)
-        [ "$webkit_flash_detection" = 1 ] && [ $(pgrep -fc ".*WebKitPluginProcess.*flashp.*") -ge 1 ] && return 0
-        ;;
-    *MPlayer | mplayer*)
-        [ "$mplayer_detection" = 1 ] && [ $(pgrep -c mplayer) -ge 1 ] && checkAudio mplayer && return 0
-        ;;
-    *mpv* | *MPV*)
-        [ "$mpv_detection" = 1 ] && [ $(pgrep -c mpv) -ge 1 ] && checkAudio mpv && return 0
-        ;;
-    *[Pp]lex*)
-        [ "$plex_detection" = 1 ] && [ $(pgrep -c plex) -ge 1 ] && checkAudio "Plex" && return 0
-        ;;
-    *vlc* | *VLC*)
-        [ "$vlc_detection" = 1 ] && [ $(pgrep -c vlc) -ge 1 ] && checkAudio vlc && return 0
-        ;;
-    *totem*)
-        [ "$totem_detection" = 1 ] && [ $(pgrep -c totem) -ge 1 ] && checkAudio totem && return 0
-        ;;
-    *steam*)
-        [ "$steam_detection" = 1 ] && [ $(pgrep -c steam) -ge 1 ] && return 0
-        ;;
-    *minitube*)
-        [ "$minitube_detection" = 1 ] && [ $(pgrep -c minitube) -ge 1 ] && return 0
-        ;;
-    *)
-        if [ -n "$chrome_app_name" ]; then
-            # Check if google chrome is running in app mode
-            [[ "$win_title" == *$chrome_app_name* ]] && [ $(pgrep -fc "chrome --app") -ge 1 ] && return 0
-        fi
+    *webKitpluginprocess*)
+        [ $(pgrep -ifc ".*WebKitPluginProcess.*flashp.*") -ge 1 ] && return 0
         ;;
     esac
+
+    if [ -n "$chrome_app_name" ]; then
+        # Check if google chrome is running in app mode
+        grep -iq "$chrome_app_name" <<<"$win_title" && [ $(pgrep -ifc "chrome --app") -ge 1 ] && return 0
+    fi
 
     [ -n "$minload" ] && [ "$(echo "$(sed 's/ .*$//' /proc/loadavg) > $minload" | bc -q)" -eq "1" ] && return 0
 
@@ -417,7 +422,7 @@ while [ -n "$1" ]; do
 done
 
 # Convert delay to seconds. We substract 10 for assurance.
-echo "Start lightson+ mainloop"
+echo "Start prevent screensaver mainloop"
 
 while true; do
     if [ -f "$inhibitfile" ]; then
