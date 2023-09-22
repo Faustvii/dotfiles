@@ -40,7 +40,7 @@ exec --no-startup-id "~/.config/polybar/scripts/polybarstart.sh"
 exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 
 # set powersavings for display:
-exec --no-startup-id xset s 480 dpms 600 600 600
+exec --no-startup-id xset s 60 dpms 90 600 600
 
 # compositor
 exec --no-startup-id picom
