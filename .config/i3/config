@@ -32,6 +32,7 @@ exec --no-startup-id setxkbmap -layout 'us,dk' -option 'grp:alt_space_toggle'
 
 # start a script to setup displays
 exec --no-startup-id ~/.screenlayout/monitor.sh
+exec --no-startup-id ~/preventScreensaver.sh
 
 exec --no-startup-id "~/.config/polybar/scripts/polybarstart.sh"
 
