@@ -41,8 +41,7 @@ declare -a browsers=(
 declare -A checked_apps=(
     [mpv]=0
     [mplayer]=0
-    [plexmediaplayer]=0 # plex media player was deprecated on Jun 1, 2022.
-    [plex]=1 # plex-desktop is the new player
+    [plex]=1 # plex-desktop is the new player plexmediaplayer was deprecated in 2022.
     [vlc]=0
     [totem]=0
     [steam]=0
@@ -167,7 +166,7 @@ checkFullscreen() {
             local active_win_title
             active_win_title=$(xprop -id "$active_win_id" | grep "WM_CLASS(STRING)" | sed 's/^.*", //;s/"//g')
 
-            isAppRunningParam "$active_win_title" && delayScreensaver
+            isAppRunning "$active_win_title" && delayScreensaver
         fi
 
         # If we are detecting by named application, then we need to detect if any audio is playing.
@@ -193,15 +192,13 @@ checkNonFullscreen() {
         # Check if window_title is not empty and not already in the unique_titles array
         if [ -n "$window_title" ] && ! [[ " ${unique_titles[*]} " =~ $window_title ]]; then
             unique_titles+=("$window_title")
-            isAppRunningParam "$window_title" && checkAudioPlaying && delayScreensaver
+            isAppRunning "$window_title" && checkAudioPlaying && delayScreensaver
         fi
     done
 }
 
-# Check if active window is mplayer, vlc or firefox
-# Then change IFs to detect more specifically the apps "<vlc>" and if process name exist
-isAppRunningParam() {
-    # Get title of window
+# Check if window is one of our monitored apps
+isAppRunning() {
     local win_title="$1"
 
     for app in "${!checked_apps[@]}"; do
@@ -291,36 +288,52 @@ delayScreensaver() {
 }
 
 help() {
-    echo "USAGE:    $ lighsonplus [FLAG1 ARG1] ... [FLAGn ARGn]"
-    echo "FLAGS (ARGUMENTS must be 0 or 1, except stated otherwise):"
-    echo ""
-    echo "  -d,  --delay             Time interval in seconds, default is 60 seconds"
-    echo "  -pa, --audio             Audio detection"
-    echo "  -m,  --mpv               mpv detection"
-    echo "  -mp, --mplayer           mplayer detection"
-    echo "  -v,  --vlc               VLC detection"
-    echo "  -t,  --totem             Totem detection"
-    echo "  -pl, --plex-media-player Plex Media Player detection"
-    echo "  -ff, --firefox-flash     Firefox flash plugin detection"
-    echo "  -cf, --chromium-flash    Chromium flash plugin detection"
-    echo "  -ca, --chrome-app        Chrome app detection, app name must be passed"
-    echo "  -wf, --webkit-flash      Webkit flash detection"
-    echo "  -h5, --html5             HTML5 detection"
-    echo "  -s,  --steam             Steam detection"
-    echo "  -mt, --minitube          MiniTube detection"
-    echo "  -la, --minload           Load average detection"
-    echo "  -wn, --window-name       Detect by window name"
-    echo "  -of, --only-fullscreen   Only prevent screensaver if window is fullscreen"
+    cat <<EOF
+USAGE:    $ lighsonplus [FLAG1 ARG1] ... [FLAGn ARGn]
+FLAGS (ARGUMENTS must be 0 or 1, except stated otherwise):
+
+  -d,  --delay             Time interval in minutes, default is 1 min
+  -pa, --audio             Audio detection
+  -ca, --chrome-app        Chrome app detection, app name must be passed
+  -f,  --flash             Flash detection (Supported: firefox, chromium, webkit)
+  -h5, --html5             HTML5 detection
+  -la, --minload           Load average detection
+  -wn, --window-name       Detect by window name
+  -of, --only-fullscreen   Only prevent screensaver if app is fullscreen
+
+$(for app in "${!checked_apps[@]}"; do
+        printf "  %-5s%-20s%s\n" "${app_short_flags[$app]}," "--$app" "${app^} detection"
+    done)
+EOF
 }
 
 checkBool() {
     [[ -n "$2" && $2 = [01] ]] || die "Invalid argument. 0 or 1 expected after \"$1\" flag."
 }
 
+init_app_short_flags() {
+    for app in "${!checked_apps[@]}"; do
+        [ "${app_short_flags[$app]}" ] && continue
+        for i in $(seq 1 ${#app}); do
+            if ! grep -q -- "${app:0:i} " <<<"${app_short_flags[*]} "; then # spaces matter
+                app_short_flags[$app]="-${app:0:i}"
+                break
+            fi
+        done
+    done
+}
+
+# this is hardcoded for retro-compatibilty
+declare -A app_short_flags=(
+
+)
+
+init_app_short_flags
+
 while [ -n "$1" ]; do
     case $1 in
     "-d" | "--delay")
-        [[ -z "$2" || "$2" = *[^0-9]* ]] && die "Invalid argument. Time in seconds expected after \"$1\" flag. Got \"$2\"" || delay_seconds=$2
+        [[ -z "$2" || "$2" = *[^0-9]* ]] && die "Invalid argument. Time in minutes expected after \"$1\" flag. Got \"$2\"" || delay=$2
         ;;
     "-ca" | "--chrome-app")
         if [ -n "$2" ]; then
@@ -349,66 +362,35 @@ while [ -n "$1" ]; do
         checkBool "$@"
         audio_detection=$2
         ;;
-    "-m" | "--mpv")
+    "-of" | "--only-fullscreen")
         checkBool "$@"
-        mpv_detection=$2
+        only_fullscreen=$2
         ;;
-    "-mp" | "--mplayer")
+    "-f" | "--flash")
         checkBool "$@"
-        mplayer_detection=$2
-        ;;
-    "-v" | "--vlc")
-        checkBool "$@"
-        vlc_detection=$2
-        ;;
-    "-t" | "--totem")
-        checkBool "$@"
-        totem_detection=$2
-        ;;
-    "-pl" | "--plex-media-player")
-        checkBool "$@"
-        plex_detection=$2
-        ;;
-    "-ff" | "--firefox-flash")
-        checkBool "$@"
-        firefox_flash_detection=$2
-        ;;
-    "-cf" | "--chromium-flash")
-        checkBool "$@"
-        chromium_flash_detection=$2
-        ;;
-    "-wf" | "--webkit-flash")
-        checkBool "$@"
-        webkit_flash_detection=$2
+        flash_detection=$2
         ;;
     "-h5" | "--html5")
         checkBool "$@"
         html5_detection=$2
         ;;
-    "-s" | "--steam")
-        checkBool "$@"
-        steam_detection=$2
-        ;;
-    "-mt" | "--minitube")
-        checkBool "$@"
-        minitube_detection=$2
-        ;;
-    "-of" | "--only-fullscreen")
-        checkBool "$@"
-        only_fullscreen=$2
-        ;;
     "-h" | "--help")
         help && exit 0
         ;;
     *)
-        die "Invalid argument. See -h, --help for more information."
+        for app in "${!checked_apps[@]}" FAIL; do
+            if [ "$1" = --"$app" ] || [ "$1" = "${app_short_flags[$app]}" ]; then
+                checked_apps[$app]=$2
+                break
+            fi
+        done
+        [ "$app" = FAIL ] && die "Invalid argument. See -h, --help for more information."
         ;;
     esac
 
     # Arguments must always be passed in tuples
     shift 2
 done
-
 # Convert delay to seconds. We substract 10 for assurance.
 echo "Start prevent screensaver mainloop"
 
