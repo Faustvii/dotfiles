@@ -61,8 +61,8 @@ window_name=""
 # realdisp
 realdisp=$(echo "$DISPLAY" | cut -d. -f1)
 
-inhibitfile="/tmp/lightsoninhibit-$UID-$realdisp"
-pidfile="/tmp/lightson-$UID-$realdisp.pid"
+inhibitfile="/tmp/preventSreenSaverinhibit-$UID-$realdisp"
+pidfile="/tmp/preventSreenSaver-$UID-$realdisp.pid"
 
 # YOU SHOULD NOT NEED TO MODIFY ANYTHING BELOW THIS LINE
 die() {
@@ -261,14 +261,12 @@ checkAudio() {
     local application_name="$1"
     local found_application=""
     local found_corked=""
-    local process_binary=""
 
     # Use pactl to list sink inputs and check for both conditions
     while read -r line; do
         if [[ "$line" =~ ^"Sink Input #" ]]; then
             found_application=""
             found_corked=""
-            process_binary=""
         elif [[ "$line" =~ ^"Corked: no" ]]; then
             found_corked="yes"
         elif [[ "$line" =~ ^"application.name = " ]]; then
@@ -282,16 +280,10 @@ checkAudio() {
             else
                 found_application=""
             fi
-        elif [[ "$line" =~ ^"application.process.binary = " ]]; then
-            process_binary=$(echo "${line#*= }" | tr -d '"')
-            # chromium application name might show up from stuff like Discord and other electron apps
-            if [[ $found_application = "chromium" && "$process_binary" != "$found_application" ]]; then
-                return 1
-            fi
         fi
 
         # Check if both conditions are met for this sink input
-        if [ "$found_application" = "$application_name" ] && [ "$found_corked" = "yes" ] && [ -n "$process_binary" ]; then
+        if [ "$found_application" = "$application_name" ] && [ "$found_corked" = "yes" ]; then
             return 0
         fi
     done < <(pactl list sink-inputs)
@@ -302,7 +294,7 @@ checkAudio() {
 
 delayScreensaver() {
     # Reset inactivity time counter so screensaver is not started
-
+echo "delaying"
     case $screensaver in
     "xscreensaver")
         xscreensaver-command -deactivate >/dev/null
@@ -329,7 +321,7 @@ delayScreensaver() {
 
 help() {
     cat <<EOF
-USAGE:    $ lighsonplus [FLAG1 ARG1] ... [FLAGn ARGn]
+USAGE:    $ preventScreensaver [FLAG1 ARG1] ... [FLAGn ARGn]
 FLAGS (ARGUMENTS must be 0 or 1, except stated otherwise):
 
   -d,  --delay             Time interval in minutes, default is 1 min

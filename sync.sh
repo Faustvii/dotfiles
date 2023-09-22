@@ -4,7 +4,7 @@
 export SSH_ASKPASS=ksshaskpass
 LC_TIME="C.UTF-8" # English 24 hour format  
 CONFIG_DIR="$HOME/Git/dotfiles"
-PUSH_INTERVAL=600 # 10 minutes in seconds 
+PUSH_INTERVAL=300 # 5 minutes in seconds 
 
 eval "$(ssh-agent)"
 ssh-add
