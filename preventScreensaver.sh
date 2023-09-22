@@ -262,7 +262,7 @@ checkAudio() {
     local found_application=""
     local found_corked=""
     local process_binary=""
-echo $application_name
+
     # Use pactl to list sink inputs and check for both conditions
     while read -r line; do
         if [[ "$line" =~ ^"Sink Input #" ]]; then
@@ -286,7 +286,6 @@ echo $application_name
             process_binary=$(echo "${line#*= }" | tr -d '"')
             # chromium application name might show up from stuff like Discord and other electron apps
             if [[ $found_application = "chromium" && "$process_binary" != "$found_application" ]]; then
-                echo "$process_binary - $found_application"
                 return 1
             fi
         fi
@@ -303,7 +302,7 @@ echo $application_name
 
 delayScreensaver() {
     # Reset inactivity time counter so screensaver is not started
-    echo "delaying"
+
     case $screensaver in
     "xscreensaver")
         xscreensaver-command -deactivate >/dev/null
