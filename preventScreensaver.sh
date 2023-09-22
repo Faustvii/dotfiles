@@ -24,20 +24,33 @@
 # Chromium are fullscreen and delay screensaver and Power Management if so.
 # If you don't pass an argument, the checks are done every minute.
 
+# Select the browsers to be checked
+
+declare -a browsers=(
+    "chromium"
+    "chrome"
+    "firefox"
+    "librewolf"
+    "brave"
+    "opera"
+    "epiphany"
+)
+
 # Select the programs to be checked
-mpv_detection=0
-mplayer_detection=0
-plex_detection=1
-vlc_detection=1
-totem_detection=1
-firefox_flash_detection=1
-chromium_flash_detection=1
-#chrome_app_name="Netflix"
-webkit_flash_detection=1
+
+declare -A checked_apps=(
+    [mpv]=0
+    [mplayer]=0
+    [plexmediaplayer]=0 # plex media player was deprecated on Jun 1, 2022.
+    [plex]=1 # plex-desktop is the new player
+    [vlc]=0
+    [totem]=0
+    [steam]=0
+    [minitube]=0
+)
+
 flash_detection=1
 html5_detection=1
-steam_detection=0
-minitube_detection=0
 audio_detection=1
 only_fullscreen=0
 #minload=1.5
@@ -45,17 +58,6 @@ delay_seconds=60
 # You can find the value for this with `xprop WM_NAME`
 # (click on the window once the mouse is a crosshair)
 window_name=""
-
-declare -A checked_apps=(
-    [mpv]=0
-    [mplayer]=0
-    [plexmediaplayer]=0
-    [plex]=1
-    [vlc]=0
-    [totem]=0
-    [steam]=0
-    [minitube]=0
-)
 
 # realdisp
 realdisp=$(echo "$DISPLAY" | cut -d. -f1)
@@ -210,28 +212,13 @@ isAppRunningParam() {
             return 0
     done
 
-    [ "$html5_detection" = 1 ] && for app in chromium chrome firefox brave opera epiphany; do
+    [ "$html5_detection" = 1 ] && for app in "${browsers[@]}"; do
         grep -iq "$app" <<<"$win_title" &&
             [ $(pgrep -ic "$app") -ge 1 ] &&
             checkAudio "$app" &&
             return 0
     done
 
-    # case "$win_title" in
-    # *[Cc]hromium*)
-    #     [ "$chromium_flash_detection" = 1 ] && [ $(pgrep -fc "chromium --type=ppapi") -ge 1 ] && return 0
-    #     [ "$html5_detection" = 1 ] && [ $(pgrep -c chromium) -ge 1 ] && checkAudio "chromium" && return 0
-    #     ;;
-    # *[Cc]hrome*)
-    #     [ "$chromium_flash_detection" = 1 ] && [ $(pgrep -fc "chrome --type=ppapi") -ge 1 ] && return 0
-    #     [ "$html5_detection" = 1 ] && [ $(pgrep -c chrome) -ge 1 ] && checkAudio "chrom" && return 0
-    #     ;;
-    # *[Ff]irefox*)
-    #     [ "$html5_detection" = 1 ] && [ $(pgrep -fc firefox) -ge 1 ] && checkAudio "firefox" && return 0
-    #     ;;
-    # *[Ll]ibre[wW]olf*)
-    #     [ "$html5_detection" = 1 ] && [ $(pgrep -fc librewolf) -ge 1 ] && checkAudio "librewolf" && return 0
-    #     ;;
     [ "$flash_detection" = 1 ] && case "$win_title" in
     *chromium*)
         [ $(pgrep -ifc "chromium --type=ppapi") -ge 1 ] && return 0
@@ -242,7 +229,7 @@ isAppRunningParam() {
     *brave*)
         [ $(pgrep -ifc "brave --type=ppapi") -ge 1 ] && return 0
         ;;
-    *unknown* | *plugin-container*) # firefox
+    *unknown* | *plugin-container*) # firefox + variants
         [ $(pgrep -ic plugin-container) -ge 1 ] && return 0
         ;;
     *webKitpluginprocess*)
@@ -278,6 +265,7 @@ checkAudio() {
 
 delayScreensaver() {
     # Reset inactivity time counter so screensaver is not started
+    echo "delaying"
     case $screensaver in
     "xscreensaver")
         xscreensaver-command -deactivate >/dev/null
