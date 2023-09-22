@@ -208,9 +208,8 @@ isAppRunning() {
             checkAudio "$app" &&
             return 0
     done
-    # echo "html5"
+
     [ "$html5_detection" = 1 ] && for app in "${browsers[@]}"; do
-        echo $app
         grep -iq "$app" <<<"$win_title" &&
             [ $(pgrep -ic "$app") -ge 1 ] &&
             checkAudio "$app" &&
@@ -397,6 +396,15 @@ while [ -n "$1" ]; do
 done
 # Convert delay to seconds. We substract 10 for assurance.
 echo "Start prevent screensaver mainloop"
+
+while true; do
+    for app in "${browsers[@]}"; do
+        if [ "$(checkAudio "$app")" = 1 ]; then
+            echo $app
+        fi
+    done
+# sleep 0.5
+done
 
 while true; do
     if [ -f "$inhibitfile" ]; then
