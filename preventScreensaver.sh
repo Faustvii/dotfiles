@@ -200,7 +200,7 @@ checkNonFullscreen() {
 # Check if window is one of our monitored apps
 isAppRunning() {
     local win_title="$1"
-# echo $win_title
+    # echo $win_title
     for app in "${!checked_apps[@]}"; do
         grep -iq "$app" <<<"$win_title" &&
             [ "${checked_apps[$app]}" = 1 ] &&
@@ -208,8 +208,9 @@ isAppRunning() {
             checkAudio "$app" &&
             return 0
     done
-echo "html5"
+    # echo "html5"
     [ "$html5_detection" = 1 ] && for app in "${browsers[@]}"; do
+        echo $app
         grep -iq "$app" <<<"$win_title" &&
             [ $(pgrep -ic "$app") -ge 1 ] &&
             checkAudio "$app" &&
@@ -257,7 +258,10 @@ checkAudioPlaying() {
 checkAudio() {
     # Check if application is streaming sound to PulseAudio
     [ "$audio_detection" = 0 ] && return 0
-    pactl list sink-inputs | grep -iEq "application.name = .*$1.*"
+
+    # Use pactl to list sink inputs and check for both application name and "Corked: no"
+    pactl list sink-inputs | grep -iEq "application.name = .*$1.*" &&
+        pactl list sink-inputs | grep -iq "Corked: no"
 }
 
 delayScreensaver() {
