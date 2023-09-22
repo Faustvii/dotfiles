@@ -260,7 +260,7 @@ checkAudio() {
 
     # Use pactl to list sink inputs and check for both application name and "Corked: no"
     pactl list sink-inputs | grep -iEq "application.name = .*$1.*" &&
-        pactl list sink-inputs | grep -iq "Corked: no"
+        pactl list sink-inputs | grep -iq "Corked: no" && return 0
 }
 
 delayScreensaver() {
@@ -399,11 +399,12 @@ echo "Start prevent screensaver mainloop"
 
 while true; do
     for app in "${browsers[@]}"; do
-        if [ "$(checkAudio "$app")" = 1 ]; then
-            echo $app
+        if checkAudio "$app"; then
+            echo "$app"
         fi
     done
-# sleep 0.5
+
+    sleep 1
 done
 
 while true; do
