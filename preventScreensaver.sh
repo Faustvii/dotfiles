@@ -200,7 +200,7 @@ checkNonFullscreen() {
 # Check if window is one of our monitored apps
 isAppRunning() {
     local win_title="$1"
-
+# echo $win_title
     for app in "${!checked_apps[@]}"; do
         grep -iq "$app" <<<"$win_title" &&
             [ "${checked_apps[$app]}" = 1 ] &&
@@ -208,7 +208,7 @@ isAppRunning() {
             checkAudio "$app" &&
             return 0
     done
-
+echo "html5"
     [ "$html5_detection" = 1 ] && for app in "${browsers[@]}"; do
         grep -iq "$app" <<<"$win_title" &&
             [ $(pgrep -ic "$app") -ge 1 ] &&
@@ -333,7 +333,7 @@ init_app_short_flags
 while [ -n "$1" ]; do
     case $1 in
     "-d" | "--delay")
-        [[ -z "$2" || "$2" = *[^0-9]* ]] && die "Invalid argument. Time in minutes expected after \"$1\" flag. Got \"$2\"" || delay=$2
+        [[ -z "$2" || "$2" = *[^0-9]* ]] && die "Invalid argument. Time in seconds expected after \"$1\" flag. Got \"$2\"" || delay_seconds=$2
         ;;
     "-ca" | "--chrome-app")
         if [ -n "$2" ]; then
