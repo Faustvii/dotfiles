@@ -265,13 +265,21 @@ checkAudio() {
     # Use pactl to list sink inputs and check for both conditions
     while read -r line; do
         if [[ "$line" =~ ^"Sink Input #" ]]; then
-            current_sink_input="${line#*#}"  # Extract the Sink Input ID
             found_application=""
             found_corked=""
         elif [[ "$line" =~ ^"Corked: no" ]]; then
             found_corked="yes"
         elif [[ "$line" =~ ^"application.name = " ]]; then
-            found_application="${line#*= }"  # Extract the application name
+            found_application=$(echo "${line#*= }" | tr -d '"')
+            # Convert both found and input application names to lowercase
+            found_application_lower="${found_application,,}"
+            application_name_lower="${application_name,,}"
+
+            if [ "$found_application_lower" = "$application_name_lower" ]; then
+                found_application="$application_name"
+            else
+                found_application=""
+            fi
         fi
 
         # Check if both conditions are met for this sink input
@@ -279,7 +287,7 @@ checkAudio() {
             return 0
         fi
     done < <(pactl list sink-inputs)
-    
+
     # If we reach here, the conditions were not met for any sink input
     return 1
 }
