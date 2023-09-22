@@ -258,9 +258,30 @@ checkAudio() {
     # Check if application is streaming sound to PulseAudio
     [ "$audio_detection" = 0 ] && return 0
 
-    # Use pactl to list sink inputs and check for both application name and "Corked: no"
-    pactl list sink-inputs | grep -iEq "application.name = .*$1.*" &&
-        pactl list sink-inputs | grep -iq "Corked: no" && return 0
+    local application_name="$1"
+    local found_application=""
+    local found_corked=""
+
+    # Use pactl to list sink inputs and check for both conditions
+    while read -r line; do
+        if [[ "$line" =~ ^"Sink Input #" ]]; then
+            current_sink_input="${line#*#}"  # Extract the Sink Input ID
+            found_application=""
+            found_corked=""
+        elif [[ "$line" =~ ^"Corked: no" ]]; then
+            found_corked="yes"
+        elif [[ "$line" =~ ^"application.name = " ]]; then
+            found_application="${line#*= }"  # Extract the application name
+        fi
+
+        # Check if both conditions are met for this sink input
+        if [ "$found_application" = "$application_name" ] && [ "$found_corked" = "yes" ]; then
+            return 0
+        fi
+    done < <(pactl list sink-inputs)
+    
+    # If we reach here, the conditions were not met for any sink input
+    return 1
 }
 
 delayScreensaver() {
