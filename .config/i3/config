@@ -349,7 +349,7 @@ for_window [class="Discover-overlay"] floating enable
 #   "_NET_WM_NAME@:s *?= 'Discover Text'",
 
 # set border of floating window
-for_window [class="urxvt"] border pixel 1
+# for_window [class="urxvt"] border pixel 1
 
 # set size of floating window
 #for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
