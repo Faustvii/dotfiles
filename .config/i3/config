@@ -375,19 +375,19 @@ set $yellowbrown	#e1b700
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+# client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
+# client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
+# client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
+# client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 # class                 border  bground text    indicator child_border
-# client.focused          #6d98e8 #12121F #D4D7FF #6d98e8   #837dd7
-# client.focused_inactive #D4D7FF #12121F #D4D7FF #D4D7FF   #E4E7FF
-# client.unfocused        #E4E7FF #222236 #29293f #E4E7FF   #F4F7FF
-# client.urgent           #d95177 #d54c73 #D4D7FF #EF4A73   #d54c73
-# client.placeholder      #12121F #12121F #D4D7FF #12121F   #222236
+client.focused          #6d98e8 #12121F #D4D7FF #6d98e8   #837dd7
+client.focused_inactive #D4D7FF #12121F #D4D7FF #D4D7FF   #E4E7FF
+client.unfocused        #E4E7FF #222236 #29293f #E4E7FF   #F4F7FF
+client.urgent           #d95177 #d54c73 #D4D7FF #EF4A73   #d54c73
+client.placeholder      #12121F #12121F #D4D7FF #12121F   #222236
 
-# client.background       #12121F
+client.background       #12121F
 
 ############################################
 # bar settings (input comes from i3blocks) #
