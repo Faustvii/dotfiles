@@ -16,6 +16,7 @@
       ~/.zshrc:
       ~/.p10k.zsh:
       ~/sync.sh:
+      ~/.config/kitty/: .config/kitty/
       ~/preventScreensaver.sh:
       ~/.config/i3/: .config/i3/
       ~/.config/picom: .config/picom/
