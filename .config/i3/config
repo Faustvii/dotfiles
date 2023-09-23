@@ -37,11 +37,11 @@ exec --no-startup-id setxkbmap -layout 'us,dk' -option 'grp:alt_space_toggle'
 exec --no-startup-id ~/.screenlayout/monitor.sh
 exec --no-startup-id ~/preventScreensaver.sh
 
-exec --no-startup-id "~/.config/polybar/scripts/polybarstart.sh"
+exec_always --no-startup-id "~/.config/polybar/scripts/polybarstart.sh"
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+exec_always --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 
 # set powersavings for display:
 # exec --no-startup-id xset s 30 dpms 90 90 90
