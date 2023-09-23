@@ -25,7 +25,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id spotify-listener
+# exec --no-startup-id spotify-listener
 
 # num lock activated
 exec --no-startup-id numlockx on
@@ -48,7 +48,7 @@ exec_always --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/back
 exec --no-startup-id xscreensaver -no-splash
 
 # compositor
-exec --no-startup-id picom
+# exec --no-startup-id picom
 
 # Desktop notifications
 # dunst config used ~/.config/dunst/dunstrc
@@ -163,7 +163,7 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -321,11 +321,11 @@ set $ws10 "10"
 # assign [class="TelegramDesktop"] $ws5
 
 # automatic set focus new window if it opens on another workspace than the current:
-for_window [class=Xfce4-terminal] focus
-for_window [class=(?i)firefox] focus
-for_window [class=Thunar] focus
-for_window [class=Thunderbird] focus
-for_window [class=TelegramDesktop] focus
+# for_window [class=Xfce4-terminal] focus
+# for_window [class=(?i)firefox] focus
+# for_window [class=Thunar] focus
+# for_window [class=Thunderbird] focus
+# for_window [class=TelegramDesktop] focus
 
 ##################
 # floating rules #
