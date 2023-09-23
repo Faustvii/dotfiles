@@ -460,7 +460,7 @@ client.background       #12121F
 
 ## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
 
-bindsym $mod+d exec rofi -modi drun -show drun \
+bindsym $mod+d exec rofi -modi drun -modi calc -show drun -show calc \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 #bindsym F9 exec rofi -modi drun -show drun \
