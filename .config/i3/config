@@ -344,7 +344,7 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [window_role="About"] floating enable
-# for_window [class="Discover-overlay"] floating enable
+for_window [class="discover-overlay"] floating enable
 
 #   "_NET_WM_NAME@:s *?= 'Discover Voice'",
 #   "_NET_WM_NAME@:s *?= 'Discover Text'",
