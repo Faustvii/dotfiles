@@ -1,7 +1,7 @@
 - defaults:
       link:
           create: true
-          force: true
+        #   force: true
 
 - clean: ["~", "~/.config"]
 
@@ -22,6 +22,7 @@
       ~/.config/picom: .config/picom/
       ~/.config/polybar/: .config/polybar/
       ~/.config/systemd/user/monitor-configs.service: monitor-configs.service
+      ~/Xresources:
       ~/.config/Code/User/:
           create: true
           glob: true
