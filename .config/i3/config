@@ -141,7 +141,7 @@ bindsym Print       exec --no-startup-id $screenshot
 # Screenshot of focused window
 bindsym Shift+Print exec --no-startup-id $screenshotfocus  
 # Screenshot area 
-bindsym $mod+Shift+Print exec --no-startup-id $screenshotarea   
+bindsym $mod+Shift+s exec --no-startup-id $screenshotarea   
 #-----------------------------------------------------------------------------#
 
 #---------------------------- Workspace navigation ---------------------------#
