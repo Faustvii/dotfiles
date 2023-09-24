@@ -314,8 +314,8 @@ for_window [class="steam"] floating enable
 for_window [class="steam" title="^Steam$"] floating disable
 assign [class="steam"] $steam
 
-for_window [class="battle.net.exe"] floating enable
-for_window [class="battle.net.exe" title="^Battle.net$"] floating disable
+for_window [class="battle.net.exe*"] floating enable
+for_window [class="battle.net.exe*" title="^Battle.net$"] floating disable
 
 # For some reason assign does not work with the spotify client
 for_window [class="Spotify"] move --no-auto-back-and-forth workspace $music
