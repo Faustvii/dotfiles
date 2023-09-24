@@ -81,7 +81,7 @@ for_window [all] title_window_icon yes;
 for_window [all] title_window_icon padding 8px;
 
 # Show gaps between open windows
-gaps inner 8
+# gaps inner 4
 
 # Large horizontal spacing that only appears when a single window is open
 # for better behavior on ultrawide monitors
