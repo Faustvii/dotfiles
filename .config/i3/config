@@ -130,16 +130,10 @@ bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightnes
 bindsym $mod+shift+o exec ~/.config/i3/scripts/switch-sink
 
 # Music player controls
-bindsym XF86AudioPlay exec --no-startup-id playerctl -p spotify play-pause
-bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next
-bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
-# bindsym XF86AudioPlayPause exec playerctl play-pause
-
-# bindsym XF86AudioMicMute exec amixer sset Capture toggle
-# bindsym XF86AudioPlay exec playerctl play-pause
-# bindsym XF86AudioPause exec playerctl play-pause
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay      exec --no-startup-id playerctl -p spotify play-pause
+bindsym XF86AudioPlayPause exec --no-startup-id playerctl -p spotify play-pause
+bindsym XF86AudioNext      exec --no-startup-id playerctl -p spotify next
+bindsym XF86AudioPrev      exec --no-startup-id playerctl -p spotify previous
 
 # bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 # Screenshot of entire desktop
