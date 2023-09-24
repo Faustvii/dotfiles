@@ -104,7 +104,7 @@ bindsym $mod+Return    exec --no-startup-id $terminal
 bindsym $mod+d         exec --no-startup-id $applauncher
 bindsym $mod+shift+d   exec --no-startup-id $scriptlauncher
 bindsym $mod+g         exec --no-startup-id $gamelauncher
-# bindsym $mod+d         exec rofi -modi drun -modi calc -show drun -show calc \
+# bindsym $mod+d         exec rofi -modi drun -show drun \
 # 		-config ~/.config/rofi/rofidmenu.rasi
 
 ## rofi bindings to manage clipboard (install rofi-greenclip from the AUR)

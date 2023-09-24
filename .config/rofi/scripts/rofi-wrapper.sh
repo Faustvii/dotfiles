@@ -7,7 +7,7 @@ GAME_LAUNCHER_CACHE=$HOME/.cache/rofi-game-launcher
 APP_PATH=~/.local/share/applications/rofi-game-launcher
 
 case "$1" in
-drun) rofi -show drun -theme drun -drun-categories Curated ;;
+drun) rofi -show drun -theme drun ;;
 run) rofi -show run -theme sidebar ;;
 windows) rofi -show window -theme sidebar ;;
 options) $SCRIPT_DIR/rofi-options-menu.sh ;;
