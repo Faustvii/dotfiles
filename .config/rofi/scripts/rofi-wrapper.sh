@@ -21,7 +21,7 @@ games)
         ln -s $GAME_LAUNCHER_CACHE/applications $APP_PATH
     fi
 
-    rofi -show drun -theme games -drun-categories SteamLibrary \
+    rofi -show drun -theme drun -drun-categories SteamLibrary  \
         -cache-dir $GAME_LAUNCHER_CACHE
 
     if [ -h $APP_PATH ]; then
