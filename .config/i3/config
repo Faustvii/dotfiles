@@ -313,6 +313,8 @@ for_window [instance="steam_app_*"] floating enable
 for_window [class="Discover-overlay"] floating enable
 for_window [class="discover-overlay"] floating enable
 for_window [instance="discover-overlay"] floating enable
+for_window [title="Discover Text"] floating enable
+for_window [title="Discover Voice"] floating enable
 for_window [instance="discover-overlay" title="^Discover Overlay Configuration$"] floating disable
 
 for_window [class="steam"] floating enable
