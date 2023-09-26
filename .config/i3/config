@@ -309,7 +309,7 @@ for_window [class="Yad" instance="yad"] floating enable
 for_window [class="feh"] floating enable
 for_window [instance="origin.exe"] floating enable
 for_window [instance="steam_app_*"] floating enable
-for_window [class="discover-overlay"] floating enable
+# for_window [class="discover-overlay"] floating enable
 for_window [class="steam"] floating enable
 for_window [class="steam" title="^Steam$"] floating disable
 assign [class="steam"] $steam
