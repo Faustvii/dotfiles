@@ -22,7 +22,7 @@ set $powermenu       ~/.config/i3/scripts/powermenu
 set $screenshotdir   $HOME/Pictures/Screenshot_%Y-%m-%d_%H.%M.%S.png
 set $screenshotfocus maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 set $screenshotarea  maim -s | xclip -selection clipboard -t image/png
-set $screenshot      maim --hidecursor $screenshotdir$(date +%Y-%b-%d--%H-%M-%S_maim | tr A-Z a-z).png;
+set $screenshot      maim --hidecursor $screenshotdir
 #-----------------------------------------------------------------------------#
 
 #----------------------------- Startup applications --------------------------#
