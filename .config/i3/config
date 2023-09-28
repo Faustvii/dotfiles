@@ -40,6 +40,7 @@ exec        --no-startup-id greenclip daemon
 exec_always --no-startup-id $statusbar
 exec_always --no-startup-id $conky
 exec_always --no-startup-id $wallpaper
+exec_always --no-startup-id autotiling
 #-----------------------------------------------------------------------------#
 #=============================================================================#
 
