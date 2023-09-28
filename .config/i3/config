@@ -138,7 +138,7 @@ bindsym XF86AudioPrev      exec --no-startup-id playerctl -p spotify previous
 
 # bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 # Screenshot of entire desktop
-bindsym Print       exec --no-startup-id $screenshot
+bindsym Print exec --no-startup-id $screenshot
 # Screenshot of focused window
 bindsym Shift+Print exec --no-startup-id $screenshotfocus  
 # Screenshot area 
