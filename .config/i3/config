@@ -19,10 +19,9 @@ set $notifications   dunst
 set $keyboard        setxkbmap -layout 'us,dk' -option 'grp:alt_space_toggle'
 set $authagent       /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 set $powermenu       ~/.config/i3/scripts/powermenu
-set $screenshotdir   $HOME/Pictures/Screenshot_$(date +\%Y-\%m-\%d_\%H.\%M.\%S).png
 set $screenshotfocus maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 set $screenshotarea  maim -s | xclip -selection clipboard -t image/png
-set $screenshot      maim --hidecursor $screenshotdir
+set $screenshot      maim --hidecursor $HOME/Pictures/Screenshot_$(date +\%Y-\%m-\%d_\%H.\%M.\%S).png
 #-----------------------------------------------------------------------------#
 
 #----------------------------- Startup applications --------------------------#
@@ -38,7 +37,7 @@ exec        --no-startup-id $screensaver
 # exec        --no-startup-id $compositor
 exec        --no-startup-id greenclip daemon
 exec_always --no-startup-id $statusbar
-exec_always --no-startup-id $conky
+# exec_always --no-startup-id $conky
 exec_always --no-startup-id $wallpaper
 exec_always --no-startup-id autotiling
 #-----------------------------------------------------------------------------#
