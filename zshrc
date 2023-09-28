@@ -88,6 +88,7 @@ plugins=(
     ssh-agent
     zsh-syntax-highlighting
     zsh-autosuggestions
+    asdf
     )
 
 source $ZSH/oh-my-zsh.sh
