@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set your variables
-export SSH_ASKPASS=ksshaskpass
+# export SSH_ASKPASS=ksshaskpass
 LC_TIME="C.UTF-8" # English 24 hour format  
 CONFIG_DIR="$HOME/Git/dotfiles"
 PUSH_INTERVAL=300 # 5 minutes in seconds 
