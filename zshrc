@@ -40,6 +40,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # ssh-agent plugin
 # zstyle :omz:plugins:ssh-agent helper ksshaskpass
+# zstyle :omz:plugins:ssh-agent helper gnome-ssh-askpass3
 zstyle :omz:plugins:ssh-agent quiet yes
 
 # Uncomment the following line if pasting URLs and other text is messed up.

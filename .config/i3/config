@@ -297,15 +297,15 @@ bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
 # Define special properties for certain classes of windows
 
 # Floating mode for dialog windows
-# for_window [window_role="pop-up"] floating enable
-# for_window [window_role="bubble"] floating enable
-# for_window [window_role="task_dialog"] floating enable
-# for_window [window_role="Preferences"] floating enable
-# for_window [window_type="dialog"] floating enable
-# for_window [window_type="menu"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
 
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-# for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Yad" instance="yad"] floating enable
 for_window [class="feh"] floating enable
 for_window [instance="origin.exe"] floating enable
 for_window [instance="steam_app_*"] floating enable
