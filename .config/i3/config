@@ -20,9 +20,9 @@ set $keyboard        setxkbmap -layout 'us,dk' -option 'grp:alt_space_toggle'
 set $authagent       /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 set $powermenu       ~/.config/i3/scripts/powermenu
 set $screenshotdir   $HOME/Pictures/Screenshot_%Y-%m-%d_%H.%M.%S.png
-set $screenshotfocus scrot $screenshotdir -u -e 'xclip -selection clipboard -t image/png -i $f' 
-set $screenshotarea  scrot $screenshotdir -s -e 'xclip -selection clipboard -t image/png -i $f'
-set $screenshot      scrot $screenshotdir -e 'feh $f -x' -d 2
+set $screenshotfocus maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+set $screenshotarea  maim -s | xclip -selection clipboard -t image/png
+set $screenshot      maim --hidecursor $screenshotdir$(date +%Y-%b-%d--%H-%M-%S_maim | tr A-Z a-z).png;
 #-----------------------------------------------------------------------------#
 
 #----------------------------- Startup applications --------------------------#
