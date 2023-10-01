@@ -127,3 +127,6 @@ source $ZSH/oh-my-zsh.sh
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+# fly
+export FLYCTL_INSTALL="/home/faust/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
