@@ -86,10 +86,12 @@ plugins=(
     archlinux
     git
     ssh-agent
-    zsh-syntax-highlighting
-    zsh-autosuggestions
     asdf
-    )
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    fast-syntax-highlighting
+    zsh-autocomplete
+)
 
 source $ZSH/oh-my-zsh.sh
 
