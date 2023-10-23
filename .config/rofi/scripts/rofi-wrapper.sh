@@ -10,6 +10,7 @@ case "$1" in
 drun) rofi -show drun -theme drun ;;
 run) rofi -show run -theme sidebar ;;
 windows) rofi -show window -theme sidebar ;;
+calculator) rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/rofidmenu.rasi ;;
 options) $SCRIPT_DIR/rofi-options-menu.sh ;;
 games)
     $SCRIPT_DIR/update-game-entries.sh -q &
