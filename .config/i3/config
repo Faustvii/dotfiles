@@ -14,6 +14,7 @@ set $gamelauncher    $HOME/.config/rofi/scripts/rofi-wrapper.sh games
 set $scriptlauncher  $HOME/.config/rofi/scripts/rofi-wrapper.sh run
 set $windowsearch    $HOME/.config/rofi/scripts/rofi-wrapper.sh windows
 set $optionsmenu     $HOME/.config/rofi/scripts/rofi-wrapper.sh options
+set $calculator      $HOME/.config/rofi/scripts/rofi-wrapper.sh calculator
 set $conky           $HOME/.config/conky/conky-wrapper.sh launch
 set $notifications   dunst
 set $keyboard        setxkbmap -layout 'us,dk' -option 'grp:alt_space_toggle'
