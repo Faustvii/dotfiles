@@ -26,6 +26,7 @@ set $screenshot      maim --hidecursor $HOME/Pictures/Screenshot_$(date +\%Y-\%m
 #-----------------------------------------------------------------------------#
 
 #----------------------------- Startup applications --------------------------#
+exec        --no-startup-id xset +dpms dpms 600 600 600
 exec        --no-startup-id numlockx on
 exec        --no-startup-id dex --autostart --environment i3
 exec        --no-startup-id ~/.screenlayout/monitor.sh
