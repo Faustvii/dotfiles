@@ -426,6 +426,7 @@ done
 echo "Start prevent screensaver mainloop"
 
 while true; do
+    echo "Checking..."
     if [ -f "$inhibitfile" ]; then
         delayScreensaver
     else
