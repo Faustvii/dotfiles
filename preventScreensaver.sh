@@ -53,7 +53,7 @@ html5_detection=1
 audio_detection=1
 only_fullscreen=0
 #minload=1.5
-delay_seconds=60
+delay_seconds=30
 # You can find the value for this with `xprop WM_NAME`
 # (click on the window once the mouse is a crosshair)
 window_name=""
@@ -123,7 +123,7 @@ else
     screensaver=""
     die "No screensaver detected"
 fi
-
+echo "Screensaver detected: $screensaver"
 check() {
     if [ "$only_fullscreen" = 1 ]; then
         checkFullscreen
