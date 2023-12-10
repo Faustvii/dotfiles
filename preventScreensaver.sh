@@ -307,7 +307,7 @@ delayScreensaver() {
         xautolock -enable
         ;;
     "xdofallback")
-        xdotool key shift
+        # xdotool key shift
         ;;
     "freedesktop-screensaver")
         dbus-send --session --reply-timeout=2000 --type=method_call --dest=org.freedesktop.ScreenSaver /ScreenSaver org.freedesktop.ScreenSaver.SimulateUserActivity
