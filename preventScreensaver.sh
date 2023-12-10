@@ -117,11 +117,16 @@ elif [ $(pgrep -c mate-screensaver) -ge 1 ]; then
     screensaver="mate-screensaver"
 elif [ $(pgrep -c xautolock) -ge 1 ]; then
     screensaver="xautolock"
-elif [ -e "/usr/bin/xdotool" ]; then
-    screensaver="xdofallback"
+# elif [ -e "/usr/bin/xdotool" ]; then
+#     screensaver="xdofallback"
 else
+    # dpms is not a screensaver, but it can be used to turn off the screen
+    dpmsStatus=$(xset -q | grep -c 'DPMS is Enabled')
+    [ "$dpmsStatus" = 1 ] && screensaver="dpms" ||
     screensaver=""
-    die "No screensaver detected"
+    if([ "$screensaver" = "" ]); then
+        die "No screensaver detected"
+    fi
 fi
 echo "Screensaver detected: $screensaver"
 check() {
@@ -307,7 +312,7 @@ delayScreensaver() {
         xautolock -enable
         ;;
     "xdofallback")
-        # xdotool key shift
+        xdotool key shift
         ;;
     "freedesktop-screensaver")
         dbus-send --session --reply-timeout=2000 --type=method_call --dest=org.freedesktop.ScreenSaver /ScreenSaver org.freedesktop.ScreenSaver.SimulateUserActivity
