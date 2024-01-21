@@ -18,6 +18,7 @@
       ~/sync.sh:
       ~/.config/kitty/: .config/kitty/
       ~/preventScreensaver.sh:
+      ~/.config/hexchat/colors.conf: .config/hexchat/colors.conf
       ~/.config/i3/: .config/i3/
       ~/.config/rofi/: .config/rofi/
       ~/.config/picom: .config/picom/
