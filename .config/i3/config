@@ -261,6 +261,9 @@ bindsym $mod+0 workspace $ws10
 bindsym $mod+p workspace $steam
 bindsym $mod+m workspace $music
 
+# Assign workspaces to monitors
+workspace $ws2 output 1
+
 # Relative workspace motion
 bindsym $mod+Ctrl+l workspace next
 bindsym $mod+Ctrl+h workspace prev
