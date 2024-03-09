@@ -236,7 +236,7 @@ bindsym $mod+r mode "resize"
 # Special workspaces
 set $ws1 "1:"
 set $ws2 "2:󰙯"
-set $ws3 "3:"
+set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6"
@@ -262,7 +262,8 @@ bindsym $mod+p workspace $steam
 bindsym $mod+m workspace $music
 
 # Assign workspaces to monitors
-workspace $ws2 output HDMI-A-0
+workspace $ws1 output primary
+workspace $ws2 output nonprimary
 
 # Relative workspace motion
 bindsym $mod+Ctrl+l workspace next
