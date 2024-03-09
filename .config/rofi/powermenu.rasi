@@ -15,8 +15,8 @@ configuration {
 
 window {
     background-color: @background;
-    border:           15;
-    border-color:     @border-color;
+    border:           3;
+    border-color:     #B48EAD;
     padding:          10;
     transparency:     "real";
     width:            120px;
