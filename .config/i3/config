@@ -235,7 +235,7 @@ bindsym $mod+r mode "resize"
 
 # Special workspaces
 set $ws1 "1:"
-set $ws2 "2:"
+set $ws2 "2:󰙯"
 set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
@@ -262,7 +262,7 @@ bindsym $mod+p workspace $steam
 bindsym $mod+m workspace $music
 
 # Assign workspaces to monitors
-workspace $ws2 output 1
+workspace $ws2 output HDMI-A-0
 
 # Relative workspace motion
 bindsym $mod+Ctrl+l workspace next
@@ -334,6 +334,8 @@ for_window [class="battle.net.exe*"] floating enable
 for_window [class="battle.net.exe*" title="^Battle.net$"] floating disable
 
 # for_window [class="overlay-demo" title="overlay-demo"] floating enable
+
+assign [class="discord"] $ws2
 
 # For some reason assign does not work with the spotify client
 for_window [class="Spotify"] move --no-auto-back-and-forth workspace $music
