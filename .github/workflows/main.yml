@@ -11,11 +11,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Gitleaks Scan
-        uses: gitleaks/gitleaks-action@v2.3.7
-        continue-on-error: true
-
       - name: TruffleHog OSS
         uses: trufflesecurity/trufflehog@v3.82.12
-        continue-on-error: true
-        
+
+      - name: Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2.3.7
