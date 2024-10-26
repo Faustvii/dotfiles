@@ -151,3 +151,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 # Created by `pipx` on 2024-08-31 21:11:30
 export PATH="$PATH:/home/faust/.local/bin"
+
+export KUBECONFIG=~/.kube/config:~/.kube/config-truenas
