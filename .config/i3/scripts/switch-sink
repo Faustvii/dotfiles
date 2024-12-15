@@ -16,7 +16,7 @@ function get_device_name() {
     /device.description =/ {description=$0}
     
     # Skip the easyeffects_sink
-    node_name != "node.name = easyeffects_sink" && node_name {
+    node_name {
         # If node_name matches the requested device, print the description
         if (node_name ~ "node.name = \"" device "\"") {
             # Clean the description and print it
