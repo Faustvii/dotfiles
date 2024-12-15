@@ -1,7 +1,7 @@
 - defaults:
       link:
           create: true
-          # force: true
+        #   force: true
 
 - clean: ["~", "~/.config"]
 
@@ -11,6 +11,7 @@
       ~/.config/easyeffects/output/: .config/easyeffects/output/
       ~/.config/easyeffects/irs: .config/easyeffects/irs/
       ~/.config/MangoHud/: .config/MangoHud/
+      ~/.config/dunst/dunstrc: .config/dunst/dunstrc
     #   ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
       ~/.gitconfig:
       ~/.zshrc:
