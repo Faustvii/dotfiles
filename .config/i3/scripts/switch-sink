@@ -12,10 +12,17 @@ next_sink=$(echo "$sinks" | awk "/$default_sink/{getline x;print x;exit;}")
 
 function get_device_name() {
     device_name=$(pactl list sinks | awk -v device="$next_sink" '
+    # Process each "Sink" block
     $1 == "Sink" {sink = $2}
+    
+    # Skip the easyeffects_sink (add check here before anything else)
+    sink == "easyeffects_sink" {next}
+    
+    # When matching node.name, and it is the required device, flag it
     $1 == "node.name" && $3 == "\"" device "\"" {found = 1}
-    # Skip the easyeffects_sink explicitly
-    sink != "easyeffects_sink" && found && $1 == "device.description" {
+    
+    # When device.description is found and we already matched the correct node.name, print description
+    found && $1 == "device.description" {
         gsub(/"/, "", $0)
         print substr($0, index($0, "=")+2)
         exit
