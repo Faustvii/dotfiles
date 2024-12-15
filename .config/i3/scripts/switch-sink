@@ -12,12 +12,17 @@ next_sink=$(echo "$sinks" | awk "/$default_sink/{getline x;print x;exit;}")
 
 function get_device_name() {
     device_name=$(pactl list sinks | awk -v device="$next_sink" '
-    $1 == "Sink" {sink = $2}
+    $1 == "Sink" {sink = $2; found = 0}
     $1 == "node.name" && $3 == "\"" device "\"" {found = 1}
     found && $1 == "device.description" {
         gsub(/"/, "", $0)
         print substr($0, index($0, "=")+2)
         exit
+    }
+    END {
+        if (!found) {
+            print "Unknown device"
+        }
     }
 ')
 }
