@@ -154,3 +154,4 @@ export PATH="$PATH:/home/faust/.local/bin"
 
 export KUBECONFIG=~/.kube/config:~/.kube/config-truenas
 eval "$(mise activate zsh)"
+export PATH="$PATH:/home/faust/.dotnet/tools"
