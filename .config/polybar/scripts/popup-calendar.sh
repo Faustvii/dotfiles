@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BAR_HEIGHT=23  # polybar height
-BORDER_SIZE=15  # border size from your wm settings
+BORDER_SIZE=15  # padding around the calendar
 YAD_WIDTH=222  # 222 is minimum possible value
 YAD_HEIGHT=193 # 193 is minimum possible value
 DATE="$(date +"%d-%m-%Y")"
