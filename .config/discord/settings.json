@@ -11,5 +11,6 @@
   "OPEN_ON_STARTUP": true,
   "chromiumSwitches": {},
   "BACKGROUND_COLOR": "#121214",
-  "offloadAdmControls": false
+  "offloadAdmControls": false,
+  "enableHardwareAcceleration": true
 }
