@@ -12,5 +12,6 @@
   "chromiumSwitches": {},
   "BACKGROUND_COLOR": "#121214",
   "offloadAdmControls": true,
-  "enableHardwareAcceleration": true
+  "enableHardwareAcceleration": true,
+  "asyncVideoInputDeviceInit": false
 }
