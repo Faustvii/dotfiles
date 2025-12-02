@@ -155,3 +155,4 @@ export PATH="$PATH:/home/faust/.local/bin"
 export KUBECONFIG=~/.kube/config:~/.kube/config-truenas
 eval "$(mise activate zsh)"
 export PATH="$PATH:/home/faust/.dotnet/tools"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "/opt/visual-studio-code/resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
