@@ -14,5 +14,6 @@
   "offloadAdmControls": true,
   "enableHardwareAcceleration": true,
   "asyncVideoInputDeviceInit": false,
-  "enableLibOpenH264Electron": false
+  "enableLibOpenH264Electron": false,
+  "openH264Enabled": true
 }
