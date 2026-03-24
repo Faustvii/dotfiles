@@ -54,6 +54,9 @@ bindkey "^K" history-search-backward
 bindkey '^R'  fzf-history-widget
 bindkey '^[[A' history-search-backward   # up arrow
 bindkey '^[[B' history-search-forward    # down arrow
+# ── Word movement ─────────────────────────────────────────────────
+bindkey '^[[1;5C' forward-word            # ctrl+right
+bindkey '^[[1;5D' backward-word           # ctrl+left
 
 # ── Shell-agnostic aliases & vars ────────────────────────────────
 [[ -f "$XDG_CONFIG_HOME/shell/alias" ]] && source "$XDG_CONFIG_HOME/shell/alias"
@@ -61,3 +64,8 @@ bindkey '^[[B' history-search-forward    # down arrow
 
 # ── Prompt ────────────────────────────────────────────────────────
 eval "$(starship init zsh)"
+
+# ── Fastfetch ─────────────────────────────────────────────────────
+if [[ -o interactive ]]; then
+    fastfetch -c examples/7
+fi

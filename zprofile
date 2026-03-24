@@ -74,7 +74,7 @@ $PATH"
 
 # ── SSH Agent (keychain) ──────────────────────────────────────────
 if command -v keychain >/dev/null 2>&1; then
-  KEYCHAIN_DIR="$XDG_CACHE_HOME/keychain"
+  KEYCHAIN_DIR="$XDG_STATE_HOME/keychain"
   [ -d "$KEYCHAIN_DIR" ] || mkdir -p "$KEYCHAIN_DIR"
   eval "$(keychain --eval --quiet --noask --timeout 480 --dir "$KEYCHAIN_DIR" id_ed25519 2>/dev/null)"
 fi
