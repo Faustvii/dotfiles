@@ -14,8 +14,9 @@
       ~/.config/dunst/dunstrc: .config/dunst/dunstrc
     #   ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
       ~/.gitconfig:
-      ~/.zshrc:
-      ~/.zprofile:
+      ~/.zshrc: .config/zsh/.zshrc
+      ~/.zprofile: .config/zsh/.zprofile
+      ~/.zshenv:
       ~/.p10k.zsh:
       ~/sync.sh:
       ~/.config/kitty/: .config/kitty/
