@@ -17,7 +17,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # ── Zsh XDG bootstrap ─────────────────────────────────────────────
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+#export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # ── History files ─────────────────────────────────────────────────
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
