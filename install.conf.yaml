@@ -59,6 +59,7 @@
     ~/Xresources:
 
 - shell:
+    - [install -d -m 700 ~/.local/share/gnupg, Creating XDG GnuPG home]
     - [git submodule update --init --recursive, Installing submodules]
     - [
         systemctl --user enable monitor-configs.service,
