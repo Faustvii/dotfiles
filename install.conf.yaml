@@ -1,7 +1,7 @@
 - defaults:
     link:
       create: true
-      #   force: true
+      force: true
 
 - clean: ["~", "~/.config"]
 
@@ -10,9 +10,12 @@
     ~/.gitconfig:
 
     # ── Zsh ───────────────────────────────────────────────────────
-    ~/.zshenv:
+    ~/.zshenv: .zshenv
     ~/.config/zsh/.zprofile: .config/zsh/.zprofile
     ~/.config/zsh/.zshrc: .config/zsh/.zshrc
+    ~/.config/zsh/aliases.zsh: .config/zsh/aliases.zsh
+    ~/.config/shell/alias: .config/shell/alias
+    ~/.config/shell/vars: .config/shell/vars
 
     # ── Prompt ────────────────────────────────────────────────────
     ~/.config/starship.toml: .config/starship.toml

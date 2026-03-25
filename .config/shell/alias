@@ -1,0 +1,28 @@
+# ~/.config/shell/alias
+
+# ── Safety nets ───────────────────────────────────────────────────
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias mkdir='mkdir -pv'
+
+# ── Navigation ────────────────────────────────────────────────────
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# ── Networking ────────────────────────────────────────────────────
+alias myip='curl -s ifconfig.me'
+alias ports='ss -tulnp'
+alias ping='ping -c 5'
+
+# ── System info ───────────────────────────────────────────────────
+alias df='df -h'
+alias du='du -h'
+alias free='free -h'
+alias psc='ps aux | grep -v grep | grep'
+
+# ── Misc ──────────────────────────────────────────────────────────
+alias c='clear'
+alias q='exit'
+alias reload='exec $SHELL'
