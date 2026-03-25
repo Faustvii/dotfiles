@@ -35,11 +35,11 @@ deleted = "-"
 renamed = "»"
 conflicted = "="
 
-# ── Kubernetes ────────────────────────────────────────────────────
 [kubernetes]
 format = '[⎈ $context\($namespace\)]($style) '
 style = "bold cyan"
 disabled = false
+detect_folders = ['k8s', 'helm', 'kubernetes', 'manifests', 'charts', 'home-ops', 'clusterRC3']
 
 # ── Right side ────────────────────────────────────────────────────
 [fill]
