@@ -31,9 +31,9 @@
     ~/.config/dunst/dunstrc: .config/dunst/dunstrc
 
     # ── Audio ─────────────────────────────────────────────────────
-    ~/.config/easyeffects/input/: .config/easyeffects/input/
-    ~/.config/easyeffects/output/: .config/easyeffects/output/
-    ~/.config/easyeffects/irs: .config/easyeffects/irs/
+    ~/.config/easyeffects/input: .config/easyeffects/input
+    ~/.config/easyeffects/output: .config/easyeffects/output
+    ~/.config/easyeffects/irs: .config/easyeffects/irs
     ~/.config/wireplumber/wireplumber.conf.d/: .config/wireplumber/wireplumber.conf.d/
 
     # ── Apps ──────────────────────────────────────────────────────
