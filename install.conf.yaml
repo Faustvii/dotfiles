@@ -1,65 +1,64 @@
 - defaults:
-      link:
-          create: true
-        #   force: true
+    link:
+      create: true
+      #   force: true
 
 - clean: ["~", "~/.config"]
 
 - link:
-      ~/.config/discord/settings.json: .config/discord/settings.json
-      ~/.config/easyeffects/input/: .config/easyeffects/input/
-      ~/.config/easyeffects/output/: .config/easyeffects/output/
-      ~/.config/easyeffects/irs: .config/easyeffects/irs/
-      ~/.config/MangoHud/: .config/MangoHud/
-      ~/.config/dunst/dunstrc: .config/dunst/dunstrc
-    #   ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
-      ~/.gitconfig:
+    # ── Git ───────────────────────────────────────────────────────
+    ~/.gitconfig:
 
     # ── Zsh ───────────────────────────────────────────────────────
-      ~/.zshenv:
-      ~/.config/zsh/.zprofile: zprofile
-      ~/.config/zsh/.zshrc: zshrc
-      ~/.p10k.zsh:
-      ~/sync.sh:
-      ~/.config/kitty/: .config/kitty/
-      ~/preventScreensaver.sh:
-      ~/.config/hexchat/colors.conf: .config/hexchat/colors.conf
-      ~/.config/i3/: .config/i3/
-      ~/.config/rofi/: .config/rofi/
-      ~/.config/picom: .config/picom/
-      ~/.config/polybar/: .config/polybar/
-      ~/.config/wireplumber/wireplumber.conf.d/: .config/wireplumber/wireplumber.conf.d/
-      ~/.config/systemd/user/monitor-configs.service: monitor-configs.service
-      ~/Xresources:
-      ~/.config/Code/User/:
-          create: true
-          glob: true
-          path: config/Code/User/*.json
+    ~/.zshenv:
+    ~/.config/zsh/.zprofile: .config/zsh/.zprofile
+    ~/.config/zsh/.zshrc: .config/zsh/.zshrc
+
+    # ── Prompt ────────────────────────────────────────────────────
+    ~/.config/starship.toml: .config/starship.toml
+
+    # ── Terminal ──────────────────────────────────────────────────
+    ~/.config/kitty/: .config/kitty/
+
+    # ── Desktop / WM ──────────────────────────────────────────────
+    ~/.config/i3/: .config/i3/
+    ~/.config/polybar/: .config/polybar/
+    ~/.config/rofi/: .config/rofi/
+    ~/.config/picom: .config/picom/
+    ~/.config/dunst/dunstrc: .config/dunst/dunstrc
+
+    # ── Audio ─────────────────────────────────────────────────────
+    ~/.config/easyeffects/input/: .config/easyeffects/input/
+    ~/.config/easyeffects/output/: .config/easyeffects/output/
+    ~/.config/easyeffects/irs: .config/easyeffects/irs/
+    ~/.config/wireplumber/wireplumber.conf.d/: .config/wireplumber/wireplumber.conf.d/
+
+    # ── Apps ──────────────────────────────────────────────────────
+    ~/.config/discord/settings.json: .config/discord/settings.json
+    ~/.config/MangoHud/: .config/MangoHud/
+    ~/.config/hexchat/colors.conf: .config/hexchat/colors.conf
+    #   ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
+
+    # ── VS Code ───────────────────────────────────────────────────
+    ~/.config/Code/User/:
+      create: true
+      glob: true
+      path: config/Code/User/*.json
+
+    # ── Systemd ───────────────────────────────────────────────────
+    ~/.config/systemd/user/monitor-configs.service: monitor-configs.service
+
+    # ── Scripts ───────────────────────────────────────────────────
+    ~/sync.sh:
+    ~/preventScreensaver.sh:
+
+    # ── X11 ───────────────────────────────────────────────────────
+    ~/Xresources:
 
 - shell:
-      - [git submodule update --init --recursive, Installing submodules]
-    #   - description: Installing oh-my-zsh
-    #     command: |
-    #         if [ ! -d "$ZSH" ]; then
-    #             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    #         fi
-    #   - description: Installing /plugins/zsh-autosuggestions
-    #     command: |
-    #         ZSH_CUSTOM="$ZSH/custom"
-    #         if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-    #             git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-    #         fi
-    #   - description: Installing /plugins/zsh-syntax-highlighting
-    #     command: |
-    #         ZSH_CUSTOM="$ZSH/custom"
-    #         if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
-    #             git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-    #         fi
-    #   - description: Installing /theme/powerlevel10k
-    #     command: |
-    #         ZSH_CUSTOM="$ZSH/custom"
-    #         if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
-    #             git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-    #         fi
-      - command: systemctl --user enable monitor-configs.service
-      - command: systemctl --user start monitor-configs.service
+    - [git submodule update --init --recursive, Installing submodules]
+    - [
+        systemctl --user enable monitor-configs.service,
+        Enabling monitor service,
+      ]
+    - [systemctl --user start monitor-configs.service, Starting monitor service]
