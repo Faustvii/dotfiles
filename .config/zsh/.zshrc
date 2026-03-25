@@ -71,3 +71,6 @@ eval "$(starship init zsh)"
 if [[ -o interactive ]]; then
     fastfetch -c examples/7
 fi
+
+# ── mise ──────────────────────────────────────────────────────────
+command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
