@@ -18,7 +18,7 @@
     ~/.config/shell/vars: .config/shell/vars
 
     # ── Prompt ────────────────────────────────────────────────────
-    ~/.config/starship.toml: .config/starship.toml
+    # ~/.config/starship.toml: .config/starship.toml
 
     # ── Terminal ──────────────────────────────────────────────────
     ~/.config/kitty/: .config/kitty/

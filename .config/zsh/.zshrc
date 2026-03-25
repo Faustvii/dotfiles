@@ -61,6 +61,8 @@ bindkey '^[[1;5D' backward-word           # ctrl+left
 # ── Shell-agnostic aliases & vars ────────────────────────────────
 [[ -f "$XDG_CONFIG_HOME/shell/alias" ]] && source "$XDG_CONFIG_HOME/shell/alias"
 [[ -f "$XDG_CONFIG_HOME/shell/vars"  ]] && source "$XDG_CONFIG_HOME/shell/vars"
+# ── Zsh aliases ───────────────────────────────────────────────────
+[[ -f "$ZDOTDIR/aliases.zsh" ]] && source "$ZDOTDIR/aliases.zsh"
 
 # ── Prompt ────────────────────────────────────────────────────────
 eval "$(starship init zsh)"
