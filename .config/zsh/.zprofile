@@ -4,7 +4,7 @@
 # ~/.zshenv must contain: export ZDOTDIR="$HOME/.config/zsh"
 
 # ── Default programs ──────────────────────────────────────────────
-export EDITOR="code --wait"
+export EDITOR="nano"
 export VISUAL="code --wait"
 export TERMINAL="kitty"
 export BROWSER="librewolf"
