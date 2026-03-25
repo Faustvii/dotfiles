@@ -1,0 +1,95 @@
+# ~/.config/starship.toml
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$kubernetes\
+$fill\
+$cmd_duration\
+$line_break\
+$character"""
+
+# ── Directory ─────────────────────────────────────────────────────
+[directory]
+truncation_length = 4
+truncation_symbol = "…/"
+style = "bold blue"
+
+# ── Git ───────────────────────────────────────────────────────────
+[git_branch]
+format = '[$symbol$branch]($style) '
+symbol = " "
+style = "bold purple"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold red"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+modified = "!"
+untracked = "?"
+staged = "+"
+deleted = "-"
+renamed = "»"
+conflicted = "="
+
+# ── Kubernetes ────────────────────────────────────────────────────
+[kubernetes]
+format = '[⎈ $context\($namespace\)]($style) '
+style = "bold cyan"
+disabled = false
+
+# ── Right side ────────────────────────────────────────────────────
+[fill]
+symbol = " "
+
+[cmd_duration]
+min_time = 2_000
+format = "[$duration](bold yellow) "
+
+# ── Prompt character ──────────────────────────────────────────────
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+# ── Disable language version detection ───────────────────────────
+[perl]
+disabled = true
+
+[python]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[lua]
+disabled = true
+
+[ruby]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[php]
+disabled = true
+
+[swift]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[terraform]
+disabled = true

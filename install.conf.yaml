@@ -1,7 +1,7 @@
 - defaults:
     link:
       create: true
-      force: true
+      force: false # set to true when rerunning to update links after changes
 
 - clean: ["~", "~/.config"]
 
@@ -18,7 +18,7 @@
     ~/.config/shell/vars: .config/shell/vars
 
     # ── Prompt ────────────────────────────────────────────────────
-    # ~/.config/starship.toml: .config/starship.toml
+    ~/.config/starship.toml: .config/starship.toml
 
     # ── Terminal ──────────────────────────────────────────────────
     ~/.config/kitty/: .config/kitty/
