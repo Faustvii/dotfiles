@@ -50,6 +50,9 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 
+# ── DOTNET ────────────────────────────────────────────────────────
+export DOTNET_TOOLS="$HOME"/dotnet-tools
+
 # ── fzf ───────────────────────────────────────────────────────────
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
 export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview"
@@ -70,6 +73,7 @@ export PATH="\
 $XDG_CONFIG_HOME/scripts:\
 $HOME/.local/bin:\
 $XDG_DATA_HOME/cargo/bin:\
+$DOTNET_TOOLS:\
 $GOBIN:\
 $PATH"
 
