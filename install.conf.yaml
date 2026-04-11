@@ -60,6 +60,7 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - [sudo install -Dm644 etc/nfsmount.conf /etc/nfsmount.conf, Installing NFS mount config]
     - [install -d -m 700 ~/.local/share/gnupg, Creating XDG GnuPG home]
     - [
         install -d -m 700 ~/.local/state/keychain && chmod -R go-rwx ~/.local/state/keychain,
