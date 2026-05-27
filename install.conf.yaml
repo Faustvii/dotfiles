@@ -1,7 +1,7 @@
 - defaults:
     link:
       create: true
-      force: true # set to true when rerunning to update links after changes
+      force: false # set to true when rerunning to update links after changes
 
 - clean: ["~", "~/.config"]
 
