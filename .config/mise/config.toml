@@ -1,2 +1,2 @@
 [settings]
-min_version_age_days = 2
+minimum_release_age = "2d"

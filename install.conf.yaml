@@ -1,7 +1,7 @@
 - defaults:
     link:
       create: true
-      force: false # set to true when rerunning to update links after changes
+      force: true # set to true when rerunning to update links after changes
 
 - clean: ["~", "~/.config"]
 
@@ -42,8 +42,9 @@
     ~/.config/hexchat/colors.conf: .config/hexchat/colors.conf
     #   ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
 
-    # ── NPM  ──────────────────────────────────────────────────────
+    # ── Package Managers ──────────────────────────────────────────
     ~/.config/npm/npmrc: .config/npm/npmrc
+    ~/.config/mise/config.toml: .config/mise/config.toml
 
     # ── VS Code ───────────────────────────────────────────────────
     ~/.config/Code/User/:
