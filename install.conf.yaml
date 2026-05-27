@@ -42,6 +42,9 @@
     ~/.config/hexchat/colors.conf: .config/hexchat/colors.conf
     #   ~/.config/discover_overlay/config.ini: .config/discover_overlay/config.ini
 
+    # ── NPM  ──────────────────────────────────────────────────────
+    ~/.config/npm/npmrc: .config/npm/npmrc
+
     # ── VS Code ───────────────────────────────────────────────────
     ~/.config/Code/User/:
       create: true
