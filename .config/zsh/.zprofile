@@ -72,6 +72,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export PATH="\
 $XDG_CONFIG_HOME/scripts:\
 $HOME/.local/bin:\
+$XDG_DATA_HOME/npm/bin:\
 $XDG_DATA_HOME/cargo/bin:\
 $DOTNET_TOOLS:\
 $GOBIN:\
