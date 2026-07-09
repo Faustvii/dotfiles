@@ -49,6 +49,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+export KREW_ROOT="$XDG_DATA_HOME/krew"
 
 # ── DOTNET ────────────────────────────────────────────────────────
 export DOTNET_TOOLS="$HOME"/dotnet-tools
@@ -71,6 +72,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 # ── PATH ──────────────────────────────────────────────────────────
 export PATH="\
 $XDG_CONFIG_HOME/scripts:\
+$KREW_ROOT/bin:\
 $HOME/.local/bin:\
 $XDG_DATA_HOME/npm/bin:\
 $XDG_DATA_HOME/cargo/bin:\
