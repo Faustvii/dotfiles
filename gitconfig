@@ -16,9 +16,3 @@
 	insteadOf = git://github.com/
 [fetch]
 	prune = true
-[credential "https://github.com"]
-	helper = 
-	helper = !/home/faust/.local/share/mise/installs/aqua-cli-cli/2.93.0/gh_2.93.0_linux_amd64/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/home/faust/.local/share/mise/installs/aqua-cli-cli/2.93.0/gh_2.93.0_linux_amd64/bin/gh auth git-credential
