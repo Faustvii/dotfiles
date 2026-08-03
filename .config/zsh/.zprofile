@@ -11,10 +11,8 @@ export BROWSER="librewolf"
 export PAGER="less"
 
 # ── XDG Base Directories ──────────────────────────────────────────
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_STATE_HOME="$HOME/.local/state"
+# moved to ~/.zshenv — .zshrc needs these regardless of login-shell status
+# (ghostty spawns non-login shells, so .zprofile isn't guaranteed to run first)
 
 # ── Zsh XDG bootstrap ─────────────────────────────────────────────
 #export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
