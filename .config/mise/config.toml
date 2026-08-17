@@ -2,4 +2,4 @@
 minimum_release_age = "2d"
 
 [tools]
-node = "22"
+node = "24"
