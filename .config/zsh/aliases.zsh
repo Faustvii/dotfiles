@@ -16,3 +16,6 @@ alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
 alias psc='ps aux | grep -v grep | grep'
 alias myip='curl -s ifconfig.me'
 alias ports='ss -tulnp'
+
+# ── K8s ───────────────────────────────────────────────────────────
+alias k9s='sofka'
