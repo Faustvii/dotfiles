@@ -2,4 +2,6 @@
 minimum_release_age = "2d"
 
 [tools]
+"cargo:sofka" = "latest"
 node = "24"
+rust = "latest"
