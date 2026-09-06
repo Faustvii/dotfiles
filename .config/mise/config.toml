@@ -2,6 +2,6 @@
 minimum_release_age = "2d"
 
 [tools]
-"cargo:sofka" = "0.20.3"
+"github:nklmilojevic/sofka" = "v0.24.5"
 node = "24"
 rust = "latest"
