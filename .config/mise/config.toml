@@ -3,6 +3,6 @@ minimum_release_age = "2d"
 
 [tools]
 dotnet = "11.0.100-preview.7.26381.103"
-"github:nklmilojevic/sofka" = "v0.24.5"
+"github:nklmilojevic/sofka" = "latest"
 node = "24"
 rust = "latest"
