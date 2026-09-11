@@ -2,7 +2,7 @@
 minimum_release_age = "2d"
 
 [tools]
-dotnet = "9.0.317"
+dotnet = ["10", "9", "8","7","6"]
 "github:nklmilojevic/sofka" = "latest"
 node = "24"
 rust = "latest"
