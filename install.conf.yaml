@@ -29,6 +29,7 @@
     ~/.config/rofi/: .config/rofi/
     ~/.config/picom: .config/picom/
     ~/.config/dunst/dunstrc: .config/dunst/dunstrc
+    ~/.screenlayout/: .screenlayout/
 
     # ── Audio ─────────────────────────────────────────────────────
     ~/.config/easyeffects/input: .config/easyeffects/input
